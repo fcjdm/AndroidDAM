@@ -8,9 +8,4 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
-    //Tema personalizado
-    <color name="green_686B">#1DE9B6</color>
-    <color name="green_676">#00E676</color>
-    <color name="green_F03">#76FF03</color>
-
 </resources>

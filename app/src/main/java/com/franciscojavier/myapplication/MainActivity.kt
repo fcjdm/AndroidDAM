@@ -15,16 +15,17 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         binding = ActivityMainBinding.inflate(layoutInflater)
-
         setContentView(binding.root)
 
-        binding.loginBtn.setOnClickListener{
-            Toast.makeText(this@MainActivity,
-                "Usuario: ${binding.userInput.text}, Contraseña: ${binding.pdwInput.text}",
-                Toast.LENGTH_SHORT).show()
-        }
+        binding.recycler.adapter = MoviesAdapter(movies)
+
+
+    }
+
+    private val movies = (1..100).map{
+        Movie("Título $it",
+            "https://loremflickr.com/g/240/320/paris,girl/lock=$it")
     }
 
 
