@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.franciscojavier.myapplication.databinding.ViewMovieBinding
 
-class MoviesAdapter(val list:List<Movie>): RecyclerView.Adapter<MoviesAdapter.ViewHolder>(){
+class MoviesAdapter(val list:List<Movie>, val listener: (Movie) -> Unit): RecyclerView.Adapter<MoviesAdapter.ViewHolder>(){
 
     class ViewHolder(view: View):RecyclerView.ViewHolder(view){
         val binding = ViewMovieBinding.bind(view)
@@ -26,6 +26,9 @@ class MoviesAdapter(val list:List<Movie>): RecyclerView.Adapter<MoviesAdapter.Vi
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(list[position])
+        holder.itemView.setOnClickListener{
+            listener(list[position])
+        }
     }
 
     override fun getItemCount(): Int = list.size

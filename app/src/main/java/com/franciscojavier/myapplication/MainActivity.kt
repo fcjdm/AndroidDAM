@@ -1,5 +1,6 @@
 package com.franciscojavier.myapplication
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
@@ -15,12 +16,25 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-
-        binding.recycler.adapter = MoviesAdapter(movies)
-
-
+        binding = ActivityMainBinding.inflate(layoutInflater).apply {
+            setContentView(root)
+            recycler.adapter = MoviesAdapter(movies) {
+                    movie->
+                val intent = Intent(this@MainActivity, DetailActivity::class.java)
+                intent.putExtra(DetailActivity.EXTRA_PELICULA, movie)
+                startActivity(intent)
+            }
+        }
+        //OTRA FORMA DE HACERLO (QUITAR EL .apply)
+       /* with(binding){
+            setContentView(root)
+            recycler.adapter = MoviesAdapter(movies) {
+                    movie->
+                val intent = Intent(this@MainActivity, DetailActivity::class.java)
+                intent.putExtra(DetailActivity.EXTRA_PELICULA, movie)
+                startActivity(intent)
+            }
+        }*/
     }
 
     private val movies = (1..100).map{
